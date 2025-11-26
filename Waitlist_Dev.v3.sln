@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36705.20 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Waitlist_Dev.v3", "Waitlist_Dev.v3\Waitlist_Dev.v3.pyproj", "{2542F4D5-3636-4CC9-BEF3-5270B8409B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2542F4D5-3636-4CC9-BEF3-5270B8409B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2542F4D5-3636-4CC9-BEF3-5270B8409B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC2343BF-8B8F-4D9D-8387-C3EB1E42A044}
+	EndGlobalSection
+EndGlobal

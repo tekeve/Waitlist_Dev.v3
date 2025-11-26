@@ -1,0 +1,21 @@
+Django>=5.0,<6.0
+psycopg2-binary>=2.9  # PostgreSQL adapter
+
+django-esi>=3.0       # Handles SSO and Token management
+bravado>=11.0         # Swagger client for ESI
+
+channels>=4.0         # Core ASGI/Websocket support
+channels-redis>=4.1   # Required for RedisChannelLayer in settings.py
+daphne>=4.0           # The ASGI Interface Server
+
+celery>=5.3
+redis>=5.0            # Redis client for Python
+django-celery-results>=2.5
+django-celery-beat>=2.5
+
+django-eventstream>=5.0
+gripcontrol>=4.1      # Required for eventstream logic
+
+requests>=2.31
+gunicorn>=21.2        # For production deployment
+python-dotenv>=1.0    # For managing secrets (.env)
