@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def index(request):
     """
     The main landing page. 
-    Eventually, this will show the 'Login with EVE' button or the Fleet Dashboard if logged in.
+    If logged in, redirect to Fleet Dashboard.
     """
+    if request.user.is_authenticated:
+        return redirect('fleets:dashboard')
+
     context = {
         'page_title': 'Home',
     }

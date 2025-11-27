@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="h-full flex flex-col p-4 space-y-4">
+
+    <!-- Fleet Header -->
+    <div class="bg-gray-800 p-4 rounded-lg border border-gray-700 flex justify-between items-center shadow-lg">
+        <div>
+            <h1 class="text-xl font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-users-viewfinder text-blue-500"></i>
+                {{ fleet.name }}
+            </h1>
+            <p class="text-sm text-gray-400">FC: <span class="text-gray-300 font-medium">{{ fleet.fc.first_name }}</span> | {{ fleet.doctrine_type }}</p>
+        </div>
+        <div>
+            <!-- Button to open Fit Submission Modal (Placeholder) -->
+            <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-2 px-4 rounded shadow-md transition-colors">
+                <i class="fa-solid fa-plus mr-1"></i> Submit Fit
+            </button>
+        </div>
+    </div>
+
+    <!-- 5-Column Waitlist Grid -->
+    <!-- Grid logic:
+         - Mobile: 1 column
+         - Desktop: 5 columns (XUP | LOGI | DPS | SNIPER | FC)
+         - If user is NOT FC, the 5th column is hidden or replaced
+    -->
+    <div class="flex-grow grid grid-cols-1 md:grid-cols-4 {% if is_fc %}lg:grid-cols-5{% endif %} gap-4 h-full overflow-hidden">
+
+        <!-- 1. X UP Column (Pending) -->
+        <div class="flex flex-col bg-gray-800/50 rounded-lg border border-gray-700 h-full">
+            <div class="p-3 border-b border-gray-700 bg-gray-800 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold text-gray-300 uppercase text-xs tracking-wider">X Up (Pending)</h3>
+                <span class="bg-gray-700 text-xs px-2 py-0.5 rounded-full text-gray-300">{{ x_up.count }}</span>
+            </div>
+            <div class="flex-grow p-2 overflow-y-auto space-y-2 scrollbar-thin">
+                {% for entry in x_up %}
+                {% include "fleets/components/fit_card.html" with entry=entry %}
+                {% empty %}
+                <div class="text-center text-gray-600 text-xs mt-10 italic">No pending fits</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 2. LOGI Column -->
+        <div class="flex flex-col bg-green-900/10 rounded-lg border border-green-900/30 h-full">
+            <div class="p-3 border-b border-green-900/30 bg-green-900/20 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold text-green-400 uppercase text-xs tracking-wider">Logistics</h3>
+                <span class="bg-green-900/40 text-xs px-2 py-0.5 rounded-full text-green-300">{{ logi.count }}</span>
+            </div>
+            <div class="flex-grow p-2 overflow-y-auto space-y-2">
+                {% for entry in logi %}
+                {% include "fleets/components/fit_card.html" with entry=entry %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 3. DPS Column -->
+        <div class="flex flex-col bg-red-900/10 rounded-lg border border-red-900/30 h-full">
+            <div class="p-3 border-b border-red-900/30 bg-red-900/20 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold text-red-400 uppercase text-xs tracking-wider">DPS</h3>
+                <span class="bg-red-900/40 text-xs px-2 py-0.5 rounded-full text-red-300">{{ dps.count }}</span>
+            </div>
+            <div class="flex-grow p-2 overflow-y-auto space-y-2">
+                {% for entry in dps %}
+                {% include "fleets/components/fit_card.html" with entry=entry %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 4. SNIPER Column -->
+        <div class="flex flex-col bg-purple-900/10 rounded-lg border border-purple-900/30 h-full">
+            <div class="p-3 border-b border-purple-900/30 bg-purple-900/20 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold text-purple-400 uppercase text-xs tracking-wider">Sniper</h3>
+                <span class="bg-purple-900/40 text-xs px-2 py-0.5 rounded-full text-purple-300">{{ sniper.count }}</span>
+            </div>
+            <div class="flex-grow p-2 overflow-y-auto space-y-2">
+                {% for entry in sniper %}
+                {% include "fleets/components/fit_card.html" with entry=entry %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 5. FLEET OVERVIEW (FC ONLY) -->
+        {% if is_fc %}
+        <div class="flex flex-col bg-blue-900/10 rounded-lg border border-blue-900/30 h-full">
+            <div class="p-3 border-b border-blue-900/30 bg-blue-900/20 rounded-t-lg flex justify-between items-center">
+                <h3 class="font-bold text-blue-400 uppercase text-xs tracking-wider">Fleet Overview</h3>
+                <i class="fa-solid fa-shield-halved text-blue-400"></i>
+            </div>
+            <div class="flex-grow p-4 overflow-y-auto space-y-4">
+
+                <!-- Stats Block -->
+                <div class="bg-gray-900/50 p-3 rounded text-xs">
+                    <h4 class="text-gray-400 uppercase font-bold mb-2">Composition</h4>
+                    <div class="flex justify-between border-b border-gray-700 py-1">
+                        <span>Logi</span> <span class="text-green-400">{{ logi.count }}</span>
+                    </div>
+                    <div class="flex justify-between border-b border-gray-700 py-1">
+                        <span>DPS</span> <span class="text-red-400">{{ dps.count }}</span>
+                    </div>
+                    <div class="flex justify-between py-1">
+                        <span>Sniper</span> <span class="text-purple-400">{{ sniper.count }}</span>
+                    </div>
+                </div>
+
+                <!-- Admin Actions -->
+                <div class="space-y-2">
+                    <button class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2 rounded">
+                        Close Fleet
+                    </button>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 rounded">
+                        Export to EVE Client
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

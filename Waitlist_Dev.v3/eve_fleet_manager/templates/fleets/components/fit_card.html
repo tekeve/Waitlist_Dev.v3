@@ -1,0 +1,33 @@
+<div class="bg-gray-700 rounded p-3 shadow border-l-4 border-gray-600 hover:bg-gray-650 transition-colors relative group">
+    <div class="flex items-start justify-between">
+        <div class="flex items-center gap-2">
+            <!-- Portrait -->
+            <img src="https://images.evetech.net/characters/{{ entry.user.username }}/portrait?size=32"
+                 class="h-8 w-8 rounded border border-gray-500">
+            <div>
+                <div class="text-sm font-bold text-white leading-tight">{{ entry.user.first_name }}</div>
+                <div class="text-xs text-gray-400">{{ entry.ship_name }}</div>
+            </div>
+        </div>
+
+        <!-- Time waiting -->
+        <div class="text-[10px] text-gray-500">
+            {{ entry.created_at|timesince }}
+        </div>
+    </div>
+
+    <!-- Actions (Visible on Hover for FC) -->
+    {% if is_fc %}
+    <div class="mt-3 pt-2 border-t border-gray-600 flex justify-end gap-2 opacity-50 group-hover:opacity-100 transition-opacity">
+        <button class="text-green-400 hover:text-green-300 text-xs" title="Accept">
+            <i class="fa-solid fa-check"></i>
+        </button>
+        <button class="text-red-400 hover:text-red-300 text-xs" title="Reject">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="text-blue-400 hover:text-blue-300 text-xs" title="View Fit">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+    </div>
+    {% endif %}
+</div>

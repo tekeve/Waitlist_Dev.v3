@@ -100,6 +100,9 @@
     <Content Include="eve_fleet_manager\sde\__pycache__\__init__.cpython-312.pyc" />
     <Content Include="eve_fleet_manager\templates\base.html" />
     <Content Include="eve_fleet_manager\templates\core\index.html" />
+    <Content Include="eve_fleet_manager\templates\fleets\components\fit_card.html" />
+    <Content Include="eve_fleet_manager\templates\fleets\dashboard.html" />
+    <Content Include="eve_fleet_manager\templates\fleets\no_fleet.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="eve_fleet_manager\" />
@@ -121,6 +124,8 @@
     <Folder Include="eve_fleet_manager\static\" />
     <Folder Include="eve_fleet_manager\templates\" />
     <Folder Include="eve_fleet_manager\templates\core\" />
+    <Folder Include="eve_fleet_manager\templates\fleets\" />
+    <Folder Include="eve_fleet_manager\templates\fleets\components\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
