@@ -1,14 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}EVE Fleet Manager{% endblock %}</title>
-    <!-- Add your CSS links here -->
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for EVE look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #4b5563;
+            }
+    </style>
+    {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-gray-900 text-white">
-    <div id="app">
+<body class="bg-gray-900 text-gray-100 h-full flex flex-col">
+
+    <!-- ================= HEADER / NAVBAR ================= -->
+    <nav class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+
+                <!-- Left: Logo & Navigation -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="flex items-center gap-2 text-blue-500 font-bold text-xl">
+                            <i class="fa-solid fa-rocket"></i> EVE FM
+                        </a>
+                    </div>
+
+                    {% if user.is_authenticated %}
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 hover:bg-gray-700 transition-colors">
+                                Dashboard
+                            </a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
+                                Fleets
+                            </a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
+                                Fits
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Right: User Profile & Alt Switcher -->
+                <div>
+                    {% if user.is_authenticated %}
+                    <div class="ml-4 flex items-center md:ml-6 gap-4">
+
+                        <!-- Character Info -->
+                        <div class="flex items-center gap-3">
+                            <div class="text-right hidden sm:block">
+                                <!-- FIX: Changed user.username to user.first_name (Character Name) -->
+                                <div class="text-sm font-medium text-white">{{ user.first_name }}</div>
+                                <div class="text-xs text-gray-400">Main Character</div>
+                            </div>
+                            <!-- Placeholder Avatar -->
+                            <div class="h-8 w-8 rounded-full bg-gray-600 flex items-center justify-center border border-gray-500 overflow-hidden">
+                                <!-- Use ESI Image Server for Avatar (fallback to initial if loading fails) -->
+                                <img src="https://images.evetech.net/characters/{{ user.username }}/portrait?size=64"
+                                     alt="{{ user.first_name }}"
+                                     class="h-full w-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+                                <span class="text-xs font-bold hidden">{{ user.first_name|make_list|first }}</span>
+                            </div>
+                        </div>
+
+                        <!-- Logout -->
+                        <a href="{% url 'logout' %}" class="text-gray-400 hover:text-white p-2" title="Logout">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <a href="{% url 'sso_login' %}" class="text-sm font-medium text-yellow-400 hover:text-yellow-300">
+                            Login <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="flex-grow w-full relative">
+
+        <!-- Global Messages / Alerts -->
+        {% if messages %}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+            {% for message in messages %}
+            <div class="flex items-center p-4 rounded-lg mb-4 border shadow-md
+                        {% if message.tags == 'error' %}bg-red-900/20 text-red-200 border-red-800/50
+                        {% elif message.tags == 'success' %}bg-green-900/20 text-green-200 border-green-800/50
+                        {% else %}bg-blue-900/20 text-blue-200 border-blue-800/50{% endif %}">
+
+                <i class="mr-3 fa-solid
+                            {% if message.tags == 'error' %}fa-circle-exclamation
+                            {% elif message.tags == 'success' %}fa-circle-check
+                            {% else %}fa-circle-info{% endif %}">
+                </i>
+                <span>{{ message }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Page Specific Content -->
         {% block content %}{% endblock %}
-    </div>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-gray-900 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Column 1: Branding -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">EVE Fleet Manager</h3>
+                    <p class="mt-4 text-xs text-gray-500">
+                        A modern waitlist and fleet management tool for EVE Online communities.
+                    </p>
+                </div>
+
+                <!-- Column 2: Links -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
+                    <ul class="mt-4 space-y-2">
+                        <li><a href="#" class="text-sm text-gray-500 hover:text-white">GitHub Repo</a></li>
+                        <li><a href="#" class="text-sm text-gray-500 hover:text-white">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: CCP Copyright (Mandatory) -->
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <p class="mt-4 text-[10px] text-gray-600 leading-relaxed">
+                        EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-800 pt-8 flex justify-center">
+                <p class="text-xs text-gray-500">&copy; {% now "Y" %} Fleet Manager. Built with Django & Tailwind.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>

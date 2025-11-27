@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}EVE Fleet Manager{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+    <div class="max-w-md w-full text-center space-y-8 p-10 bg-gray-800 rounded-xl shadow-2xl border border-gray-700">
+
+        <!-- Icon / Branding -->
+        <div class="mx-auto h-24 w-24 bg-blue-600 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+            <svg class="h-12 w-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </div>
+
+        <h2 class="mt-6 text-3xl font-extrabold tracking-tight">
+            Fleet Waitlist
+        </h2>
+
+        <p class="mt-2 text-sm text-gray-400">
+            Secure EVE Online Fleet Management.<br>
+            Please log in to view active fleets or manage your account.
+        </p>
+
+        <div class="mt-8">
+            {% if user.is_authenticated %}
+            <a href="#" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Enter Dashboard
+            </a>
+            {% else %}
+            <!-- FIX: Updated to use the global 'sso_login' name we just created -->
+            <a href="{% url 'sso_login' %}?next={% url 'index' %}" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                Log in with EVE Online
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

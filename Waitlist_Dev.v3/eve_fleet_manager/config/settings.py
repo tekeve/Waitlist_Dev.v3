@@ -143,6 +143,9 @@ ESI_SSO_CLIENT_ID = os.environ.get('ESI_CLIENT_ID', '')
 ESI_SSO_CLIENT_SECRET = os.environ.get('ESI_CLIENT_SECRET', '')
 ESI_SSO_CALLBACK_URL = os.environ.get('ESI_CALLBACK_URL', 'http://localhost:8000/sso/callback')
 
+# MANDATORY: Developer contact email for CCP (User-Agent header)
+ESI_USER_CONTACT_EMAIL = os.environ.get('ESI_USER_CONTACT_EMAIL', 'your-email@example.com')
+
 # Scopes required for your app (Add more as features require)
 ESI_SSO_SCOPES = [
     'publicData',

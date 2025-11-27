@@ -21,15 +21,106 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="eve_fleet_manager\config\asgi.py" />
+    <Compile Include="eve_fleet_manager\config\settings.py" />
+    <Compile Include="eve_fleet_manager\config\urls.py" />
+    <Compile Include="eve_fleet_manager\config\wsgi.py" />
+    <Compile Include="eve_fleet_manager\config\__init__.py" />
+    <Compile Include="eve_fleet_manager\core\admin.py" />
+    <Compile Include="eve_fleet_manager\core\apps.py" />
+    <Compile Include="eve_fleet_manager\core\models.py" />
+    <Compile Include="eve_fleet_manager\core\urls.py" />
+    <Compile Include="eve_fleet_manager\core\views.py" />
+    <Compile Include="eve_fleet_manager\core\__init__.py" />
+    <Compile Include="eve_fleet_manager\debug_urls.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\admin.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\apps.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\models.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\urls.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\views.py" />
+    <Compile Include="eve_fleet_manager\eve_auth\__init__.py" />
+    <Compile Include="eve_fleet_manager\fleets\admin.py" />
+    <Compile Include="eve_fleet_manager\fleets\apps.py" />
+    <Compile Include="eve_fleet_manager\fleets\models.py" />
+    <Compile Include="eve_fleet_manager\fleets\urls.py" />
+    <Compile Include="eve_fleet_manager\fleets\views.py" />
+    <Compile Include="eve_fleet_manager\fleets\__init__.py" />
+    <Compile Include="eve_fleet_manager\integrations\admin.py" />
+    <Compile Include="eve_fleet_manager\integrations\apps.py" />
+    <Compile Include="eve_fleet_manager\integrations\models.py" />
+    <Compile Include="eve_fleet_manager\integrations\urls.py" />
+    <Compile Include="eve_fleet_manager\integrations\views.py" />
+    <Compile Include="eve_fleet_manager\integrations\__init__.py" />
     <Compile Include="eve_fleet_manager\manage.py" />
+    <Compile Include="eve_fleet_manager\sde\admin.py" />
+    <Compile Include="eve_fleet_manager\sde\apps.py" />
+    <Compile Include="eve_fleet_manager\sde\management\commands\update_sde.py" />
+    <Compile Include="eve_fleet_manager\sde\management\commands\__init__.py" />
+    <Compile Include="eve_fleet_manager\sde\management\__init__.py" />
+    <Compile Include="eve_fleet_manager\sde\models.py" />
+    <Compile Include="eve_fleet_manager\sde\urls.py" />
+    <Compile Include="eve_fleet_manager\sde\views.py" />
+    <Compile Include="eve_fleet_manager\sde\__init__.py" />
+    <Compile Include="eve_fleet_manager\signals.py" />
     <Compile Include="setup_structure.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="eve_fleet_manager\.env" />
+    <Content Include="eve_fleet_manager\config\__pycache__\settings.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\config\__pycache__\urls.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\config\__pycache__\wsgi.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\config\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\admin.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\apps.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\models.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\urls.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\views.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\core\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\admin.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\apps.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\models.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\urls.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\views.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\eve_auth\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\admin.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\apps.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\models.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\urls.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\views.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\fleets\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\integrations\__pycache__\admin.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\integrations\__pycache__\apps.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\integrations\__pycache__\models.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\integrations\__pycache__\__init__.cpython-312.pyc" />
     <Content Include="eve_fleet_manager\requirements.txt" />
+    <Content Include="eve_fleet_manager\sde\management\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\sde\__pycache__\admin.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\sde\__pycache__\apps.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\sde\__pycache__\models.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\sde\__pycache__\__init__.cpython-312.pyc" />
+    <Content Include="eve_fleet_manager\templates\base.html" />
+    <Content Include="eve_fleet_manager\templates\core\index.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="eve_fleet_manager\" />
+    <Folder Include="eve_fleet_manager\config\" />
+    <Folder Include="eve_fleet_manager\config\__pycache__\" />
+    <Folder Include="eve_fleet_manager\core\" />
+    <Folder Include="eve_fleet_manager\core\__pycache__\" />
+    <Folder Include="eve_fleet_manager\eve_auth\" />
+    <Folder Include="eve_fleet_manager\eve_auth\__pycache__\" />
+    <Folder Include="eve_fleet_manager\fleets\" />
+    <Folder Include="eve_fleet_manager\fleets\__pycache__\" />
+    <Folder Include="eve_fleet_manager\integrations\" />
+    <Folder Include="eve_fleet_manager\integrations\__pycache__\" />
+    <Folder Include="eve_fleet_manager\sde\" />
+    <Folder Include="eve_fleet_manager\sde\management\" />
+    <Folder Include="eve_fleet_manager\sde\management\commands\" />
+    <Folder Include="eve_fleet_manager\sde\management\__pycache__\" />
+    <Folder Include="eve_fleet_manager\sde\__pycache__\" />
+    <Folder Include="eve_fleet_manager\static\" />
+    <Folder Include="eve_fleet_manager\templates\" />
+    <Folder Include="eve_fleet_manager\templates\core\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
