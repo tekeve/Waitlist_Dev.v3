@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Waitlist_Dev.v3/eve_fleet_manager/.env
+/Waitlist_Dev.v3/eve_fleet_manager/.env
